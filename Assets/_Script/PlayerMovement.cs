@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rbPlayer;
     private bool isJumping = true;
+    private bool isKeyPressed = false;
     [SerializeField] float jumpForcce;
     [SerializeField] float forwardForce;
 
     void Start()
     {
         _rbPlayer = GetComponent<Rigidbody2D>();
+        
     }
 
      void Update()
