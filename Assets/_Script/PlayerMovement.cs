@@ -2,14 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rbPlayer;
-    private bool isJumping = true;
-    private bool isKeyPressed = false;
     [SerializeField] float jumpForcce;
-    [SerializeField] float forwardForce;
 
     void Start()
     {
@@ -19,24 +17,21 @@ public class PlayerMovement : MonoBehaviour
 
      void Update()
     {
-        Jump();
-        MoveForward();
+        JumpAndForward();
+        
     }
 
-    void Jump()
+    void JumpAndForward()
     {
+        Vector2 jump = Vector2.up * jumpForcce;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rbPlayer.AddForce(Vector2.up * jumpForcce, ForceMode2D.Impulse);
-            isJumping = false;
+            _rbPlayer.AddForce(jump, ForceMode2D.Impulse);
         }
     }
 
-    void MoveForward()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _rbPlayer.AddForce(Vector2.right * forwardForce,ForceMode2D.Impulse);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
