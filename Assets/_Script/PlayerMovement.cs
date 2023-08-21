@@ -9,25 +9,27 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rbPlayer;
     [SerializeField] float jumpForcce;
     private float score;
+    private float reset = 0;
 
     void Start()
     {
         _rbPlayer = GetComponent<Rigidbody2D>();
-        
     }
 
      void Update()
     {
-        JumpAndForward();
+       
+        Jump();
         
     }
 
-    void JumpAndForward()
+    void Jump()
     {
-        Vector2 jump = Vector2.up * jumpForcce;
+        Vector3 jump = Vector3.up * jumpForcce;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rbPlayer.AddForce(jump, ForceMode2D.Impulse);
+            _rbPlayer.velocity = new Vector2(_rbPlayer.velocity.x, 0);
+            _rbPlayer.AddForce(jump , ForceMode2D.Impulse);
         }
     }
 

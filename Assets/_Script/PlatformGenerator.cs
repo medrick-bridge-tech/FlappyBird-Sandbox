@@ -33,7 +33,7 @@ public class PlatformGenerator : MonoBehaviour
     {
         Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-heights, heights));
         GameObject pipe = Instantiate(platforms, spawnPos, Quaternion.identity);
-        Destroy(pipe, 20f);
+        Destroy(pipe, 15f);
     }
 
     
