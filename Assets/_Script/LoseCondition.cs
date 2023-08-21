@@ -9,6 +9,7 @@ public class LoseCondition : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("Hit");
-       
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    
 }

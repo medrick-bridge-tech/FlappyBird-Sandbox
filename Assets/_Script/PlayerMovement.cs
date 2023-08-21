@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rbPlayer;
     [SerializeField] float jumpForcce;
+    private float score;
 
     void Start()
     {
@@ -30,8 +31,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (other.gameObject.tag == "Pipe")
+        {
+            Debug.Log(++score);
+        }
     }
 }
